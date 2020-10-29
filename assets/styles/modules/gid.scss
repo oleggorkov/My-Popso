@@ -1,0 +1,1057 @@
+.street-map {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  @include mobile {
+    margin-right: 0.3rem;
+  }
+
+  &__form-head {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    &--cursor-default {
+      cursor: default;
+    }
+  }
+
+  .btn-main {
+    &--transparent {
+      height: 4rem;
+      min-height: 4rem;
+      margin-top: 1rem;
+      background-color: transparent;
+      color: $color-main--darkgray;
+      font-weight: normal;
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+
+      svg {
+        width: 1.3rem;
+        fill: $color-main--darkgray;
+        margin-right: 1.1rem;
+      }
+    }
+  }
+}
+
+.street-map-form {
+  width: 60rem;
+  height: auto;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 0.8rem;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.street-map-container {
+  width: 100%;
+  height: auto;
+
+  padding: 1.6rem 2.4rem 1.6rem 4rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2.4rem;
+
+  background-color: white;
+  border-radius: 1rem;
+
+  @include mobile {
+    padding: 1.6rem;
+    width: 100%;
+  }
+
+  &__head {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    cursor: pointer;
+
+    &--cursor-default {
+      cursor: default;
+    }
+
+    &-icon {
+      width: 4rem;
+      height: 4rem;
+
+      min-width: 4rem;
+
+      margin-right: 2.4rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 50%;
+      background-color: $color-main--white;
+      border: 0.1rem solid $color-main--darkgray;
+      transition: background-color ease 0.35s, border ease 0.35s;
+
+      @include mobile {
+        width: 2.4rem;
+        height: 2.4rem;
+
+        min-width: 2.4rem;
+
+        margin-right: 1.8rem;
+      }
+
+      svg {
+        width: 1.5rem;
+        height: 1rem;
+
+        fill: $color-main--darkgray;
+        transition: fill ease 0.35s;
+
+        @include mobile {
+          width: 1.1rem;
+          height: 0.8rem;
+        }
+      }
+    }
+
+    &-title {
+      position: relative;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      color: $color-main--darkgray;
+      transition: color ease 0.35s;
+
+      @include mobile {
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+      }
+    }
+
+    &-line{
+      width: 0;
+      height: 0.1rem;
+
+      position: absolute;
+      left: 0;
+      top: 50%;
+
+      transform: translateY(-50%);
+      transition: width ease 0.35s;
+      background-color: $color-main--green;
+    }
+
+    &-accordion-toggle {
+      width: 2.4rem;
+      height: 2.4rem;
+
+      margin-left: auto;
+
+      border: 0.1rem solid $color-main--lightgray;
+      border-radius: 50%;
+      position: relative;
+
+      transition: 0.35s ease transform;
+      transform: rotate(180deg);
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: #CFD8E2!important;
+        //TODO Поменять цвет
+      }
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: auto;
+
+    @include mobile {
+      padding: 0 1.6rem;
+    }
+
+    .input-checkbox {
+      margin-top: 1.6rem;
+    }
+
+    .input-radio {
+      &__new {
+        width: 3.2rem;
+        height: 3.2rem;
+
+        margin-right: 0.8rem;
+
+        &:before {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+      }
+
+      &__text {
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+
+        @include mobile {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .input-text {
+      margin-bottom: 0.1rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: $color-main--darkgray;
+
+    @include mobile {
+      font-size: 1.2rem;
+    }
+
+    &--black {
+      color: $color-main--black
+    }
+
+    &--italic {
+      font-style: italic;
+    }
+  }
+
+  &__sub-title{
+    margin-top: 1.6rem;
+    font-size: 1.4rem;
+    color: $color-main--orange;
+
+    span{
+      font-size: inherit;
+      font-weight: bold;
+    }
+
+    @include mobile{
+      font-size: 1.2rem;
+    };
+  }
+
+  &--flex {
+    display: flex;
+  }
+
+  &--confirm {
+    .street-map-container__head {
+
+      &-icon {
+        background-color: $color-main--green;
+        border-color: transparent;
+      }
+
+      svg {
+        fill: $color-main--white
+      }
+
+      &-title {
+        color: $color-main--green;
+        font-weight: 500;
+      }
+
+      &-line{
+        width: 100%;
+      }
+    }
+  }
+
+  &--open {
+    .street-map-container__head-accordion-toggle {
+      transform: rotate(0deg);
+    }
+  }
+
+  &--current {
+    .street-map-container__head {
+      &-icon {
+        background-color: $color-main--darkgray;
+        border-color: transparent;
+      }
+
+      &-title {
+        font-weight: bold;
+      }
+
+      svg {
+        fill: $color-main--white
+      }
+    }
+  }
+}
+
+.street-map-profile {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 4rem;
+  grid-row-gap: 0.2rem;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #phone:disabled{
+    color: $color-main--darkgray;
+  }
+}
+
+.street-map-legal-status {
+  &__wrapper{
+    width: 100%;
+    height: auto;
+
+    min-height: 5.2rem;
+
+    margin-bottom: 1.6rem;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    .input-radio{
+      margin-right: 2.4rem;
+      flex-shrink: 0;
+    }
+
+    .input-suggestion{
+      width: 100%;
+      height: auto;
+
+      &__footer{
+        display: none;
+      }
+
+      &__hidden-case{
+        top: 100%;
+      }
+    }
+  }
+
+  & > .input-radio {
+    margin-bottom: 1.6rem;
+  }
+
+  .input-inn-animate-enter-active, .input-inn-animate-leave-active {
+    transition: opacity 0.35s;
+  }
+  .input-inn-animate-enter, .input-inn-animate-leave-to {
+    opacity: 0;
+  }
+}
+
+.street-map-analytics {
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: space-between;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 1.2rem;
+  }
+
+  .btn-main {
+    max-width: 25.6rem;
+  }
+
+  .street-map-btn {
+    &--success {
+      margin-left: auto;
+    }
+  }
+}
+
+.street-map-electronic-management {
+  display: grid;
+  grid-template-columns: 1fr 4.3fr;
+  grid-gap: 2.4rem;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 1.2rem;
+    margin-left: 1.2rem;
+  }
+
+  &__link-area {
+    min-height: 3.2rem;
+  }
+
+  .street-map-container__title {
+    font-size: 1.2rem;
+    margin-top: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .input-radio {
+    align-items: flex-start;
+
+    &__new {
+      margin-right: 1.6rem;
+    }
+  }
+
+  .input-select-text {
+    margin-top: 0.8rem;
+  }
+}
+
+.street-map-electronic-signature {
+  display: grid;
+  grid-template-columns: 1fr 4.3fr;
+  grid-gap: 2.4rem;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 100%);
+    grid-gap: 1.6rem;
+  }
+
+  .input-radio {
+    &:first-child {
+      margin-bottom: 1.6rem;
+    }
+
+    &__new {
+      margin-right: 1.6rem;
+    }
+  }
+
+  .input-radio__text {
+    display: flex;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  .link {
+    margin-left: 1.6rem;
+
+    @include mobile {
+      margin-left: 0;
+    }
+  }
+}
+
+.street-map-marketplace-registration {
+  .street-map-container__inner {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.6rem;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  .link {
+    margin-right: 2.4rem;
+  }
+
+  .street-map-btn {
+    &--success {
+      margin-top: 1.2rem;
+    }
+  }
+
+  .input-checkbox {
+    margin-top: 1.6rem;
+  }
+}
+
+.street-map-price-list {
+  .street-map-container__inner {
+    max-width: 35.4rem;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-gap: 1.6rem;
+
+    margin-top: 2.4rem;
+    margin-bottom: 0.6rem;
+
+    @include mobile {
+      max-width: 26.2rem;
+      grid-template-columns: 14.5rem 10rem;
+
+      margin-bottom: 1.3rem;
+    }
+  }
+
+  .input-checkbox {
+    margin-top: 1.6rem;
+  }
+}
+
+.street-map-brand {
+  .street-map-container {
+    &__title {
+      margin-bottom: 1.6rem;
+    }
+  }
+}
+
+.street-map-catalogue {
+  .input-select {
+    margin-top: 1.6rem;
+  }
+
+  .btn-main {
+    margin-top: 1.1rem;
+    margin-right: auto;
+  }
+}
+
+.street-map-productions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.6rem 4rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+
+  .street-map-container__title {
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    @include mobile {
+      grid-column-start: 1;
+      grid-column-end: 1;
+    }
+  }
+
+  .input-text {
+    label {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 0.8rem;
+
+      @include mobile {
+        display: flex;
+      }
+    }
+
+    &__title {
+      line-height: 3.2rem;
+    }
+
+    &__footer {
+      grid-column-start: 1;
+      grid-column-end: -1;
+    }
+
+    &__title {
+      white-space: pre;
+    }
+  }
+}
+
+.street-map-documentations {
+  .street-map-container__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .link {
+    @include mobile {
+      margin-top: 0.8rem;
+    }
+  }
+
+  .btn-main {
+    margin-top: 0.5rem;
+    margin-right: auto;
+  }
+
+  .input-select {
+    &:not(:first-child) {
+      margin-top: 1.6rem;
+    }
+  }
+}
+
+.street-map-packing {
+  .street-map-container__title {
+    margin-bottom: 1.8rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__inputs-title{
+    margin-top: 0.2rem;
+  }
+
+  &__input-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0 3.8rem;
+    margin-top: 1.6rem;
+
+    @include mobile {
+      grid-gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .btn-main {
+    margin-top: -3.4rem;
+    margin-left: auto;
+
+    @include mobile {
+      margin-top: 0;
+    }
+  }
+
+  .input-text {
+    @include mobile {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+}
+
+.street-map-shipment {
+  .street-map-container__title {
+    margin: 0.8rem 0 2.4rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .input-suggestion {
+    margin-top: 0.8rem;
+  }
+}
+
+.street-map-reviews {
+  .street-map-container__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-text {
+    margin-top: 2.4rem;
+    margin-bottom: 1.6rem;
+
+    @include mobile {
+      margin-top: 1.6rem;
+      margin-right: 1rem;
+      margin-bottom: 0;
+    }
+
+    &__wrapper {
+      margin-left: 1.3rem;
+      margin-right: 1rem;
+    }
+
+    label {
+      flex-direction: row;
+      align-items: flex-end;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 0.8rem;
+    }
+
+    input {
+      margin-right: 1.2rem;
+      @include mobile {
+        padding: 0;
+      }
+    }
+
+    &__title {
+      line-height: 3.2rem;
+    }
+
+    &__footer {
+      grid-column-start: 1;
+      grid-column-end: -1;
+    }
+
+    &__title {
+      white-space: pre;
+
+      @include mobile {
+        white-space: normal;
+        line-height: 1.6rem;
+      }
+    }
+  }
+
+  &__sign {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    margin-left: 0.8rem;
+    margin-bottom: 0.8rem;
+
+    color: $color-main--darkgray;
+
+    @include mobile {
+      margin-bottom: -0.8rem;
+    }
+  }
+}
+
+.street-map-logistics {
+  .btn-main {
+    width: 29.6rem;
+    margin-top: 1.6rem;
+
+    @include mobile {
+      width: 25.2rem;
+    }
+  }
+
+  .street-map-btn--success {
+    width: 12.5rem;
+    margin-top: -4rem;
+    margin-left: auto;
+    height: 3.2rem;
+
+    @include mobile {
+      margin-top: 1.6rem;
+    }
+  }
+}
+
+.street-map-recommendations {
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 1.6rem;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  .btn-main {
+    width: 16.4rem;
+    @include mobile {
+      width: 25.2rem;
+      /*margin-left: 0;*/
+    }
+  }
+}
+
+.street-map-electronic-signature {
+  grid-template-columns: 1fr 4.3fr;
+  grid-gap: 2.4rem;
+
+  @include mobile {
+    grid-template-columns: repeat(1, 100%);
+    grid-gap: 1.6rem;
+  }
+
+  .input-radio {
+    align-items: flex-start;
+
+    &--width100 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+
+      @include mobile {
+        grid-column-end: 1;
+      }
+    }
+  }
+}
+
+.street-map-waiting {
+
+  padding: 1.6rem 2.4rem 1.6rem 4rem;
+  background-color: white;
+  border-radius: 1rem;
+
+  width: 60rem;
+  height: 24.3rem;
+
+  display: flex;
+  align-items: center;
+
+  margin-top: 0.8rem;
+
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__title{
+    font-weight: 500;
+    font-size: 2.0rem;
+    line-height: 3.2rem;
+
+    color: $color-main--black;
+  }
+
+  &__text{
+    margin-top: 1.6rem;
+
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 2.0rem;
+
+    color: $color-main--black;
+  }
+}
+
+.street-map-complete {
+  max-width: 93.2rem;
+  width: 100%;
+
+  margin-top: 1.6rem;
+  padding-bottom: 7rem;
+  padding-left: 8rem;
+
+  display: grid;
+  grid-template-areas:  "text logo"
+  "text logo"
+  "btn  logo";
+  grid-template-rows: 1fr 1fr 4rem  ;
+  grid-template-columns: 3fr 1fr;
+
+  @include mobile {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:  "text"
+    "logo"
+    "btn";
+
+    padding-bottom: 3.2rem;
+    padding-left: 3.8rem;
+  }
+
+  &__text-area{
+    grid-area: text
+  }
+
+  &__btn-area {
+    grid-area: btn;
+    display: flex;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+  }
+
+  &__subtitle {
+    margin-bottom: 3.6rem;
+    max-width: 31rem;
+  }
+
+
+
+  &__title {
+    margin-top: 2.4rem;
+    margin-bottom: 2.1rem;
+  }
+
+  &__text {
+    max-width: 31rem;
+    font-size: 1.4rem;
+    line-height: 2.0rem;
+    font-weight: 500;
+    color: $color-main--black;
+
+
+    &--big {
+      font-size: 2.0rem;
+      line-height: 3.2rem;
+    }
+
+    &--gray {
+      color: $color-main--darkgray;
+    }
+  }
+
+
+
+  .btn-main {
+    width: 16.4rem;
+
+    @include mobile {
+      width: 25.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    &:first-child {
+      margin-right: 2.1rem;
+    }
+  }
+
+  &-enter-active{
+    transition: opacity ease 0.35s;
+  }
+
+  &-leave-active{
+    transition: opacity ease 0.35s;
+  }
+
+  &-enter{
+    opacity: 0;
+  }
+
+  &-leave-to{
+    opacity: 0;
+  }
+}
+
+.street-map-btn {
+  &--success {
+    width: 12.5rem;
+
+    @include mobile {
+      width: 10rem;
+      height: 3.2rem;
+    }
+  }
+}
+
+.street-map-mobile-menu-btn {
+  z-index: 25;
+  position: fixed;
+  bottom: 9.5rem;
+  right: 2.75rem;
+  border-radius: 50%;
+  width: 5.6rem;
+  height: 5.6rem;
+  background: #FFFFFF;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &--none {
+    display: none;
+  }
+
+  &__line {
+    width: 2.0rem;
+    height: 0.2rem;
+    background: $color-main--green;
+    border-radius: 0.2rem;
+
+    &:not(:last-child) {
+      margin-bottom: 0.4rem;
+    }
+  }
+}
+
+.street-map .custom-loading {
+  .input-suggestion,
+  .input-select,
+  .input-select-text,
+  .input-text,
+  .input-radio,
+  .input-checkbox label,
+  .btn-main,
+  .street-map-container__head,
+  .street-map-container__title,
+  .street-map-container__sub-title,
+  .street-map-state__list-item,
+  .street-map-electronic-management > .street-map-container__inner,
+  .street-map-documentations .link,
+  .street-map-reviews__sign,
+  .street-map-complete__text,
+  .street-map-complete__logo-area,
+  .street-map-marketplace-registration__inner {
+    position: relative;
+    pointer-events: none;
+    border: none !important;
+
+    &:before, &:after {
+      transition: opacity ease 0.35s;
+
+      will-change: all;
+    }
+
+    &:before {
+      content: '';
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+      z-index: 3;
+      background-color: $color-main--lightgray;
+      background-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+      background-size: 25% 100%;
+      background-position: -100% 0;
+      background-repeat: no-repeat;
+      border-radius: 0.8rem;
+
+      animation: loading ease 1.75s infinite;
+    }
+
+    &:after {
+      content: '';
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+      z-index: 2;
+      background-color: white;
+    }
+  }
+}
+
+.street-map .custom-loading--removing {
+  * {
+    &:before, &:after {
+      opacity: 0;
+      will-change: all;
+    }
+  }
+}
+
+.hidden { /*TODO Технический класс Удалить после разработки и вёрстку тоже*/
+  display: none;
+}

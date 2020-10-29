@@ -1,0 +1,14 @@
+@import './var.scss';
+
+.#{$namespace}-zoom-in-down-enter-active,
+.#{$namespace}-zoom-in-down-leave-active {
+  opacity: 1;
+  transform: translateY(0.8rem);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.#{$namespace}-zoom-in-down-enter,
+.#{$namespace}-zoom-in-down-leave-to {
+  opacity: 0;
+  transform: translateY(2.4rem)!important;
+}

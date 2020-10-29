@@ -1,0 +1,24 @@
+*{
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+input{
+  outline: none;
+}
+
+input:disabled{
+  background-color: inherit;
+}
+
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+ul, ol{
+  list-style: none;
+}
